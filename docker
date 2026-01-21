@@ -1,6 +1,6 @@
-from openjdk:17
-workdir /app
-copy . .
+FROM openjdk:17
+WORKDIR /app
+COPY . .
 RUN apt-get update
 RUN apt-get -y scala
 RUN apt-get install apt-transport-https curl gnupg -yqq
@@ -10,5 +10,6 @@ RUN curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E4
 RUN chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
 RUN apt-get update
 RUN apt-get install sbt
-expose 9000
-cmd ["sbt","run"]
+EXPOSE 9000
+CMD ["sbt","run"]
+
